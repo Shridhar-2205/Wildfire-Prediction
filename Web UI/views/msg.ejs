@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script>
+function myFunction() {
+  var x;  
+var myPythonScriptPath = 'jon.py';
+
+// Use python shell
+var {PythonShell} = require('python-shell');
+var pyshell = new PythonShell(myPythonScriptPath);
+
+pyshell.on('message', function (message) {
+    // received a message sent from the Python script (a simple "print" statement)
+    console.log(message);
+	x=message+"hello";
+	console.log(x);
+});
+
+// end the input stream and allow the process to exit
+pyshell.end(function (err) {
+    if (err){
+        throw err;
+    };
+	console.log(99);
+    console.log(x);
+    console.log('finished');
+});
+
+  document.getElementById("demo").innerHTML = x;
+  
+}
+
+const button = document.getElementById('myButton');
+button.addEventListener('click', function(e) {
+  
+ //   res.render('msg',{name:x})
+dom.byId("mytext").innerHTML= x;  
+  
+  console.log('button was clicked');
+});
+</script>
+ </head>
+
+<body>
+ <form action="/fileupload" method="POST" enctype="multipart/form-data">
+  Select an image to upload:
+  <input type="file" name="filename"> 
+  <input type="submit" value="Upload Image">
+</form>
+
+ <form action="/pyt" method="POST" enctype="multipart/form-data">
+  Write code
+   <input type="submit" value="python">
+</form>
+<br><b><%=name %></b>
+
+
+ 
+ </body>
+ 
+</html>

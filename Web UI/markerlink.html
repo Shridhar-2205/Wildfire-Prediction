@@ -1,0 +1,61 @@
+<html>
+   <head>
+     
+<style>
+html { height: 100% }
+body { height: 100%; margin: 0; padding: 0 }
+#map_canvas { height: 100% }
+</style>
+
+      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLYH3KAxMafRPUSPNc-iG_sxedTkUwId0&callback=initMap"
+  type="text/javascript"></script>
+	 <script type="text/javascript">
+	 document.getElementById("map_canvas").onload = initialize();
+	 
+    var points = [
+  ['San Jose', 39.9362384705039, -118.19232525792222, 12, 'https://google.com'],
+  ['San Francisco', 35.941412822085645, -117.263564729357767, 11, 'https://facebook.com'],
+  ['Sunnyvale', 36.939177197629455, -116.273554411974955, 10, 'https://gmail.com'],
+  ['Santa Barbara', 37.939177197629455, -116.273554411974955, 10, 'https://gaana.com']
+];
+
+function setMarkers(map, locations) {
+  var shape = {
+    coord: [1, 1, 1, 20, 18, 20, 18 , 1],
+    type: 'poly'
+  };
+
+  for (var i = 0; i < locations.length; i++) {
+    var place = locations[i];
+    var myLatLng = new google.maps.LatLng(place[1], place[2]);
+    var marker = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      shape: shape,
+      title: place[0],
+      zIndex: place[3],
+      url: place[4]
+    });
+    google.maps.event.addListener(marker, 'click', function() {
+      window.location.href = this.url;
+    });
+  }
+}
+
+function initialize() {
+  var myOptions = {
+    center: new google.maps.LatLng(37, -118.243222856188822),
+    zoom: 7,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  var map = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
+  setMarkers(map, points);
+}
+
+     </script>
+  </head>
+   
+  <body>
+    <div id="map_canvas" style="width:100%; height:100%"></div>
+</body>
+   </html>
