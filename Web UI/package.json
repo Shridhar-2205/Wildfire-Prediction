@@ -40,7 +40,7 @@
     "chart.js": "^2.7.2",
     "connect-busboy": "0.0.2",
     "cookie-parser": "^1.4.3",
-    "ejs": "^2.6.1",
+    "ejs": "^3.1.7",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "holderjs": "^2.9.4",
